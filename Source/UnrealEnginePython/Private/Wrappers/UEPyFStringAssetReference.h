@@ -4,12 +4,12 @@
 
 #include "UnrealEnginePython.h"
 
-#include "Runtime/CoreUObject/Public/Misc/StringAssetReference.h"
-
+//#include "Runtime/CoreUObject/Public/Misc/StringAssetReference.h"
+#include "Runtime/CoreUObject/Public/UObject/SoftObjectPath.h"
 typedef struct {
 	PyObject_HEAD
 	/* Type-specific fields go here. */
-	FStringAssetReference fstring_asset_reference;
+	FSoftObjectPath fstring_asset_reference;
 } ue_PyFStringAssetReference;
 
 PyObject *py_ue_new_fstring_asset_reference(FStringAssetReference);

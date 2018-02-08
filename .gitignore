@@ -88,6 +88,7 @@ ENV/
 # Rope project settings
 .ropeproject
 
+Intermediate/
 Binaries/
 python35/
 python27/
