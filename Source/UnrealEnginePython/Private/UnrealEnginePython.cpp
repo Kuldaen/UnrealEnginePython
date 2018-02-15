@@ -235,6 +235,10 @@ void FUnrealEnginePythonModule::StartupModule()
 		PlatformFile.CreateDirectory(*ScriptsPath);
 	}
 
+	ScriptsPath = FPaths::ConvertRelativePathToFull(ScriptsPath);
+	AdditionalModulesPath = FPaths::ConvertRelativePathToFull(AdditionalModulesPath);
+	ZipPath = FPaths::ConvertRelativePathToFull(ZipPath);
+
 	Py_Initialize();
 
 	PyEval_InitThreads();

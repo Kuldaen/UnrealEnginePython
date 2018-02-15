@@ -161,7 +161,11 @@ PyObject *py_unreal_engine_get_up_vector(PyObject * self, PyObject * args)
 
 PyObject *py_unreal_engine_get_content_dir(PyObject * self, PyObject * args)
 {
+#if ENGINE_MINOR_VERSION >=18
+	return PyUnicode_FromString(TCHAR_TO_UTF8(*FPaths::ProjectContentDir()));
+#else
 	return PyUnicode_FromString(TCHAR_TO_UTF8(*FPaths::GameContentDir()));
+#endif
 }
 
 PyObject *py_unreal_engine_convert_relative_path_to_full(PyObject * self, PyObject * args)

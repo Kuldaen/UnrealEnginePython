@@ -3,6 +3,7 @@
 #include "PythonEditorPrivatePCH.h"
 #include "PYRichTextSyntaxHighlighterTextLayoutMarshaller.h"
 #include "WhiteSpaceTextRun.h"
+#include "Runtime/Launch/Resources/Version.h"
 
 FPYRichTextSyntaxHighlighterTextLayoutMarshaller::FPYRichTextSyntaxHighlighterTextLayoutMarshaller(TSharedPtr< FPythonSyntaxTokenizer > InTokenizer, const FSyntaxTextStyle& InSyntaxTextStyle)
 	: Tokenizer(MoveTemp(InTokenizer))
@@ -311,7 +312,11 @@ void FPYRichTextSyntaxHighlighterTextLayoutMarshaller::ParseTokens(const FString
 			FRunInfo RunInfo(TEXT("SyntaxHighlight.PY.Normal"));
 			FTextBlockStyle TextBlockStyle = SyntaxTextStyle.NormalTextStyle;
 
+#if ENGINE_MINOR_VERSION >=18
+			const bool bIsWhitespace = FString(TokenText).TrimEnd().IsEmpty();
+#else
 			const bool bIsWhitespace = FString(TokenText).TrimTrailing().IsEmpty();
+#endif
 			if(!bIsWhitespace)
 			{
 				bool bHasMatchedSyntax = false;
